@@ -43,7 +43,7 @@ DATA = {
                     ],
                 "todo" : [
                     {"name" : "Test Year 2", "month" : "4", "day" : "15", "whole-day" : "yes",
-                                            "hour" : "", "length" : "", "done" : "no"},
+                                            "hour" : "", "length" : "", "done" : "no"}, # current year instance
                     ],
                 },
             "monthly" : {
@@ -51,7 +51,7 @@ DATA = {
                     {"name" : "Test Month 1" , "day" : "12" , "whole-day" : "yes" , "hour" : ""   , "length" : ""},
                     {"name" : "Test Month 2" , "day" : "20" , "whole-day" : "no"  , "hour" : "14" , "length" : "30"},
                     ],
-                "todo" : [
+                "todo" : [ # current month instance
                     {"name" : "Test Month 3", "day" : "15", "whole-day" : "yes", "hour" : "", "length" : "", "done" : "no"},
                     {"name" : "Test Month 4", "day" : "15", "whole-day" : "yes", "hour" : "", "length" : "", "done" : "yes"},
                     ],
@@ -72,13 +72,18 @@ DATA = {
                     {"name" : "251 Homework Solution" , "day" : "0" , "hour" : "12 30" , "length" : "60"},
                     {"name" : "251 Recitation"        , "day" : "6" , "hour" : "14 30" , "length" : "60"},
                     ],
-                "todo" : [
+                "todo" : [ # current week instance
+                    {"name" : "Test Week 1" , "day" : "0" , "hour" : "16" , "length" : "180" , "done" : "yes"} ,
+                    {"name" : "Test Week 2" , "day" : "3" , "hour" : "16" , "length" : "100" , "done" : "no"}  ,
+                    {"name" : "Test Week 3" , "day" : "1" , "hour" : "8"  , "length" : "30"  , "done" : "no"}  ,
                     ],
                 },
             "daily" : {
                 "default" : [
                     ],
-                "todo" : [
+                "todo" : [ # weekly instances by day
+                    {"name" : "Test Day 1" , "hour" : "11 30" , "length" : "20" , "done" : "0 1 4 6"} ,
+                    {"name" : "Test Day 2" , "hour" : "20 40" , "length" : "50" , "done" : "1 2 3"}   ,
                     ],
                 },
             "no-repeat" : {
