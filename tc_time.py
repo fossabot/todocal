@@ -5,6 +5,7 @@ import datetime
 def get_time_info ():
     now = datetime.datetime.now ()
 
+    year    = now.year       # numerical current year
     month   = now.month      # numerical month
     day     = now.day        # numerical day
     hour    = now.hour       # numerical current hour
@@ -28,6 +29,7 @@ def get_time_info ():
     week_end   = week_start + datetime .timedelta (days = 6)
 
     TIME_INFO = {
+            "year"             : year,             # int
             "month"            : month,            # int
             "day"              : day,              # int
             "hour"             : hour,             # string
