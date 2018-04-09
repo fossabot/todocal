@@ -88,8 +88,13 @@ DATA = {
                 },
             "no-repeat" : {
                 "default" : [
+                    {"name" : "Test NoRep 1" , "month" : "4" , "day" : "19" , "hour" : "9 30" , "length" : "15"}  ,
+                    {"name" : "Test NoRep 2" , "month" : "5" , "day" : "1"  , "hour" : "21"   , "length" : "150"} ,
                     ],
                 "todo" : [
+                    {"name" : "Test NoRep 3" , "month" : "4" , "day" : "19" , "hour" : "10"    , "length" : "20" , "done" : "no"}  ,
+                    {"name" : "Test NoRep 4" , "month" : "4" , "day" : "7"  , "hour" : "15 20" , "length" : "30" , "done" : "yes"} ,
+                    {"name" : "Test NoRep 5" , "month" : "4" , "day" : "5"  , "hour" : "17 15" , "length" : "45" , "done" : "no"}  ,
                     ],
                 },
             },
