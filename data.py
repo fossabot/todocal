@@ -38,14 +38,20 @@ DATA = {
         "events" : {
             "yearly" : {
                 "default" : [
+                    {"name" : "My Birthday" , "month" : "11" , "day" : "30" , "whole-day" : "yes" , "hour" : ""   , "length" : ""},
+                    {"name" : "Test Year 1" , "month" : "4"  , "day" : "1"  , "whole-day" : "no"  , "hour" : "10" , "length" : "120"},
                     ],
                 "todo" : [
+                    {"name" : "Test Year 2", "month" : "4", "day" : "15", "whole-day" : "yes", "hour" : "", "length" : ""},
                     ],
                 },
             "monthly" : {
                 "default" : [
+                    {"name" : "Test Month 1" , "day" : "12" , "whole-day" : "yes" , "hour" : ""   , "length" : ""},
+                    {"name" : "Test Month 2" , "day" : "20" , "whole-day" : "no"  , "hour" : "14" , "length" : "30"},
                     ],
                 "todo" : [
+                    {"name" : "Test Month 3", "day" : "15", "whole-day" : "yes", "hour" : "", "length" : ""},
                     ],
                 },
             "weekly" : {
