@@ -37,34 +37,34 @@ DATA = {
             },
         "events" : {
             "yearly" : {
-                "default" : {
-                    },
-                "todo" : {
-                    },
+                "default" : [
+                    ],
+                "todo" : [
+                    ],
                 },
             "monthly" : {
-                "default" : {
-                    },
-                "todo" : {
-                    },
+                "default" : [
+                    ],
+                "todo" : [
+                    ],
                 },
             "weekly" : {
-                "default" : {
-                    },
-                "todo" : {
-                    },
+                "default" : [
+                    ],
+                "todo" : [
+                    ],
                 },
             "daily" : {
-                "default" : {
-                    },
-                "todo" : {
-                    },
+                "default" : [
+                    ],
+                "todo" : [
+                    ],
                 },
             "no-repeat" : {
-                "default" : {
-                    },
-                "todo" : {
-                    },
+                "default" : [
+                    ],
+                "todo" : [
+                    ],
                 },
             },
         }
