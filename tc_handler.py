@@ -36,3 +36,30 @@ def import_yearly_todo (DATA, TIME_INFO):
         "length" : convert_hours (e["whole-day"], e["hour"], e["length"]) [1]} for e in filtered]
 
     return converted
+
+def import_monthly_default (DATA, TIME_INFO):
+    monthly_default = DATA ["events"] ["monthly"] ["default"] # un-filtered, un-converted
+
+    if TIME_INFO ["week-start-month"] == TIME_INFO ["week-end-month"]:
+        filtered = [event for event in monthly_default if day_in_week (TIME_INFO, TIME_INFO ["month"], int (event["day"]))]
+    else:
+        filtered = []
+        for event in monthly_default:
+            if day_in_week (TIME_INFO, TIME_INFO ["week-start-month"], int (event["day"])):
+                filtered.append ((event, "week-start-month")) # use a tuple to indicate which month
+            elif day_in_week (TIME_INFO, TIME_INFO ["week-end-month"], int (event["day"])):
+                filtered.append ((event, "week-end-month"))
+            else:
+                continue
+
+    if TIME_INFO ["week-start-month"] == TIME_INFO ["week-end-month"]:
+        converted = [{"name" : e["name"], "month" : TIME_INFO["month"], "day" : e["day"],
+            "hour" : convert_hours (e["whole-day"], e["hour"], e["length"]) [0],
+            "length" : convert_hours (e["whole-day"], e["hour"], e["length"]) [1]} for e in filtered]
+    else:
+        converted = [{"name" : t[0]["name"], "month" : TIME_INFO[t[1]], "day" : t[0]["day"],
+            "hour" : convert_hours (t[0]["whole-day"], t[0]["hour"], t[0]["length"]) [0],
+            "length" : convert_hours (t[0]["whole-day"], t[0]["hour"], t[0]["length"]) [1]} for t in filtered]
+
+    return converted
+
