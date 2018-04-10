@@ -152,3 +152,21 @@ def import_daily_todo (DATA, TIME_INFO):
                 "hour" : event["hour"], "length" : event["length"]})
     return expanded
 
+def summarize_defaults (DATA, TIME_INFO):
+    yearly_defaults  = import_yearly_default (DATA, TIME_INFO)
+    monthly_defaults = import_monthly_default (DATA, TIME_INFO)
+    weekly_defaults  = import_weekly_default (DATA, TIME_INFO)
+    daily_defaults   = import_daily_default (DATA, TIME_INFO)
+    no_rep_defaults  = [event for event in DATA ["events"] ["no-repeat"] ["default"]]
+    summary = yearly_defaults + monthly_defaults + weekly_defaults + daily_defaults + no_rep_defaults
+    return summary
+
+def summarize_todos (DATA, TIME_INFO):
+    yearly_todos  = import_yearly_todo (DATA, TIME_INFO)
+    monthly_todos = import_monthly_todo (DATA, TIME_INFO)
+    weekly_todos  = import_weekly_todo (DATA, TIME_INFO)
+    daily_todos   = import_daily_todo (DATA, TIME_INFO)
+    no_rep_todos  = [event for event in DATA ["events"] ["no-repeat"] ["todo"]]
+    summary = yearly_todos + monthly_todos + weekly_todos + daily_todos + no_rep_todos
+    return summary
+
