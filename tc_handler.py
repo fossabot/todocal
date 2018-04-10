@@ -53,11 +53,11 @@ def import_monthly_default (DATA, TIME_INFO):
                 continue
 
     if TIME_INFO ["week-start-month"] == TIME_INFO ["week-end-month"]:
-        converted = [{"name" : e["name"], "month" : TIME_INFO["month"], "day" : e["day"],
+        converted = [{"name" : e["name"], "month" : str (TIME_INFO["month"]), "day" : e["day"],
             "hour" : convert_hours (e["whole-day"], e["hour"], e["length"]) [0],
             "length" : convert_hours (e["whole-day"], e["hour"], e["length"]) [1]} for e in filtered]
     else:
-        converted = [{"name" : t[0]["name"], "month" : TIME_INFO[t[1]], "day" : t[0]["day"],
+        converted = [{"name" : t[0]["name"], "month" : str (TIME_INFO[t[1]]), "day" : t[0]["day"],
             "hour" : convert_hours (t[0]["whole-day"], t[0]["hour"], t[0]["length"]) [0],
             "length" : convert_hours (t[0]["whole-day"], t[0]["hour"], t[0]["length"]) [1]} for t in filtered]
 
@@ -79,11 +79,11 @@ def import_monthly_todo (DATA, TIME_INFO):
                 continue
 
     if TIME_INFO ["week-start-month"] == TIME_INFO ["week-end-month"]:
-        converted = [{"name" : e["name"], "month" : TIME_INFO["month"], "day" : e["day"], "done" : e["done"],
+        converted = [{"name" : e["name"], "month" : str (TIME_INFO["month"]), "day" : e["day"], "done" : e["done"],
             "hour" : convert_hours (e["whole-day"], e["hour"], e["length"]) [0],
             "length" : convert_hours (e["whole-day"], e["hour"], e["length"]) [1]} for e in filtered]
     else:
-        converted = [{"name" : t[0]["name"], "month" : TIME_INFO[t[1]], "day" : t[0]["day"], "done" : t[0]["done"],
+        converted = [{"name" : t[0]["name"], "month" : str (TIME_INFO[t[1]]), "day" : t[0]["day"], "done" : t[0]["done"],
             "hour" : convert_hours (t[0]["whole-day"], t[0]["hour"], t[0]["length"]) [0],
             "length" : convert_hours (t[0]["whole-day"], t[0]["hour"], t[0]["length"]) [1]} for t in filtered]
 
