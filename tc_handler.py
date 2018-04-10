@@ -119,3 +119,36 @@ def import_weekly_todo (DATA, TIME_INFO):
         "hour" : e["hour"], "length" : e["length"]} for e in weekly_todo]
     return converted
 
+def import_daily_default (DATA, TIME_INFO):
+    # duplicate event across all weekdays
+    daily_default = DATA ["events"] ["daily"] ["default"]
+    expanded = []
+    week_start_date_object = datetime.date (TIME_INFO ["year"], TIME_INFO ["week-start-month"], TIME_INFO ["week-start-day"])
+    for weekday in range(7): # from 0 to 6
+        date_object = week_start_date_object + datetime.timedelta (days = weekday)
+        month = str (date_object.month)
+        day = str (date_object.day)
+        for event in daily_default:
+            expanded.append ({"name" : event["name"], "month" : month, "day" : day,
+                "hour" : event["hour"], "length" : event["length"]})
+    return expanded
+
+def import_daily_todo (DATA, TIME_INFO):
+    # duplicate event across all weekdays
+    daily_todo = DATA ["events"] ["daily"] ["todo"]
+    expanded = []
+    week_start_date_object = datetime.date (TIME_INFO ["year"], TIME_INFO ["week-start-month"], TIME_INFO ["week-start-day"])
+    for weekday in range(7): # from 0 to 6
+        date_object = week_start_date_object + datetime.timedelta (days = weekday)
+        month = str (date_object.month)
+        day = str (date_object.day)
+        for event in daily_todo:
+            done_dates = [int (d) for d in event["done"].split(" ")]
+            if weekday in done_dates:
+                done = "yes"
+            else:
+                done = "no"
+            expanded.append ({"name" : event["name"], "month" : month, "day" : day, "done" : done,
+                "hour" : event["hour"], "length" : event["length"]})
+    return expanded
+
