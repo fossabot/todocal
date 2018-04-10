@@ -89,3 +89,33 @@ def import_monthly_todo (DATA, TIME_INFO):
 
     return converted
 
+def import_weekly_default (DATA, TIME_INFO):
+    # no need for filtering
+    # convertion based on weekday
+    weekly_defaults = DATA ["events"] ["weekly"] ["default"]
+    def get_date (event):
+        weekday = event ["day"]
+        week_start_date_object = datetime.date (TIME_INFO ["year"], TIME_INFO ["week-start-month"], TIME_INFO ["week-start-day"])
+        event_date_object = week_start_date_object + datetime.timedelta (days = int (weekday))
+        month = str (event_date_object.month)
+        day = str (event_date_object.day)
+        return (month, day)
+    converted = [{"name" : e["name"], "month" : get_date(e)[0], "day" : get_date(e)[1],
+        "hour" : e["hour"], "length" : e["length"]} for e in weekly_defaults]
+    return converted
+
+def import_weekly_todo (DATA, TIME_INFO):
+    # no need for filtering
+    # convertion based on weekday
+    weekly_todo = DATA ["events"] ["weekly"] ["todo"]
+    def get_date (event):
+        weekday = event ["day"]
+        week_start_date_object = datetime.date (TIME_INFO ["year"], TIME_INFO ["week-start-month"], TIME_INFO ["week-start-day"])
+        event_date_object = week_start_date_object + datetime.timedelta (days = int (weekday))
+        month = str (event_date_object.month)
+        day = str (event_date_object.day)
+        return (month, day)
+    converted = [{"name" : e["name"], "month" : get_date(e)[0], "day" : get_date(e)[1], "done" : e["done"],
+        "hour" : e["hour"], "length" : e["length"]} for e in weekly_todo]
+    return converted
+
