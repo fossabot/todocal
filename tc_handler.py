@@ -27,3 +27,12 @@ def import_yearly_default (DATA, TIME_INFO):
 
     return converted
 
+def import_yearly_todo (DATA, TIME_INFO):
+    yearly_todo = DATA ["events"] ["yearly"] ["todo"] # un-filtered, un-converted
+    filtered = [event for event in yearly_todo if day_in_week (TIME_INFO, int (event["month"]), int (event["day"]))]
+
+    converted = [{"name" : e["name"], "month" : e["month"], "day" : e["day"], "done" : e["done"],
+        "hour" : convert_hours (e["whole-day"], e["hour"], e["length"]) [0],
+        "length" : convert_hours (e["whole-day"], e["hour"], e["length"]) [1]} for e in filtered]
+
+    return converted
