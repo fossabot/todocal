@@ -159,6 +159,14 @@ def summarize_defaults (DATA, TIME_INFO):
     daily_defaults   = import_daily_default (DATA, TIME_INFO)
     no_rep_defaults  = [event for event in DATA ["events"] ["no-repeat"] ["default"]]
     summary = yearly_defaults + monthly_defaults + weekly_defaults + daily_defaults + no_rep_defaults
+
+    for event in summary: # type checking
+        assert (type (event["name"])   == str)
+        assert (type (event["month"])  == str)
+        assert (type (event["day"])    == str)
+        assert (type (event["hour"])   == str)
+        assert (type (event["length"]) == str)
+
     return summary
 
 def summarize_todos (DATA, TIME_INFO):
@@ -168,5 +176,14 @@ def summarize_todos (DATA, TIME_INFO):
     daily_todos   = import_daily_todo (DATA, TIME_INFO)
     no_rep_todos  = [event for event in DATA ["events"] ["no-repeat"] ["todo"]]
     summary = yearly_todos + monthly_todos + weekly_todos + daily_todos + no_rep_todos
+
+    for event in summary: # type checking
+        assert (type (event["name"])   == str)
+        assert (type (event["month"])  == str)
+        assert (type (event["day"])    == str)
+        assert (type (event["hour"])   == str)
+        assert (type (event["length"]) == str)
+        assert (type (event["done"])   == str)
+
     return summary
 
