@@ -1,4 +1,7 @@
 # TodoCal Time Handler
+# --------------------
+# Catelog
+# get_time_info (): return TIME_INFO
 
 import datetime
 

@@ -1,4 +1,7 @@
 # TodoCal Data Structure in Python
+# --------------------------------
+# Catelog
+# DATA (dictionary object)
 
 DATA = {
         "meta" : {
