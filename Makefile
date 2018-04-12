@@ -10,3 +10,4 @@ clean:
 
 manual:
 	python3
+	make clean
