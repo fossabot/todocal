@@ -193,6 +193,24 @@ def summarize_defaults (DATA, TIME_INFO):
     weekly_defaults  = __import_weekly_default (DATA, TIME_INFO)
     daily_defaults   = __import_daily_default (DATA, TIME_INFO)
     no_rep_defaults  = [event for event in DATA ["events"] ["no-repeat"] ["default"]]
+
+    yearly_color  = __get_color_code (DATA, "yearly default")
+    monthly_color = __get_color_code (DATA, "monthly default")
+    weekly_color  = __get_color_code (DATA, "weekly default")
+    daily_color   = __get_color_code (DATA, "daily default")
+    no_rep_color  = __get_color_code (DATA, "no-repeat default")
+
+    for e in yearly_defaults:
+        e ["color"] = yearly_color
+    for e in monthly_defaults:
+        e ["color"] = monthly_color
+    for e in weekly_defaults:
+        e ["color"] = weekly_color
+    for e in daily_defaults:
+        e ["color"] = daily_color
+    for e in no_rep_defaults:
+        e ["color"] = no_rep_color
+
     summary = yearly_defaults + monthly_defaults + weekly_defaults + daily_defaults + no_rep_defaults
 
     for event in summary: # type checking
