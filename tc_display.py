@@ -85,3 +85,6 @@ def __get_calendar_height (max_height, E):
         tc_meta.raise_ERROR ("TodoCal: unimplemented situation.")
     # assert (span_height >= 2)
 
+    calendar_height = span_height * (len (spans)) + 3
+    return (calendar_height, span_height, spans)
+
