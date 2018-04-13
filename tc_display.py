@@ -136,3 +136,21 @@ def __prepare_events (E, TIME_INFO): # synthesize event information, return new 
         synthesis.append (new_info)
     return synthesis # synthesized new event list
 
+def make_display ():
+    (E, dimension_raw_info, TIME_INFO) = pass_info () # get data from print module
+
+    synthesis = __prepare_events (E, TIME_INFO) # synthesized new event list
+    # e in synthesis -> name, weekday (int), color-code (str), time-start/end-code (int)
+
+    (calendar_width, max_height, (time_col_width, between_col_width, col_width)) = __get_dimension_info (dimension_raw_info)
+    (calendar_height, span_height, spans) = __get_calendar_height (max_height, E)
+
+# |---------------------- calendar width ---------------------------|
+# |----time_col----|---------------(header)-------------------------|
+# |................|------|------|------|------|------|------|------|
+# => col_width = 6, between_col_width = 1 ..........................|
+# | 8:00 | ---------> ..............................................|
+# |......| .......... => span_height = 2 ...........................|
+# | 9:00 | ---------> ..............................................|
+# |_________________ calendar height (||) __________________________|
+
