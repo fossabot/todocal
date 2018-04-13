@@ -11,11 +11,12 @@ def print_week_defaults ():
 
     for e in summary:
         print (u'\u001b[38;5;' + e ["color"] + 'm' +
-                e ["month"] + '/' +
-                e ["day"] + ' ' +
-                e ["hour"].replace (' ', ':') + ' ' +
-                e ["name"] +
-                u'\u001b[0m')
+                "{month}/{day} {time} {name}".format (
+                    month = e ["month"],
+                    day = e ["day"],
+                    time = e ["hour"].replace (' ', ':'),
+                    name = e ["name"] )
+                + u'\u001b[0m')
 
     return 0
 
@@ -26,10 +27,11 @@ def print_week_todos ():
 
     for e in summary:
         print (u'\u001b[38;5;' + e ["color"] + 'm' +
-                e ["month"] + '/' +
-                e ["day"] + ' ' +
-                e ["hour"].replace (' ', ':') + ' ' +
-                e ["name"] +
-                u'\u001b[0m')
+                "{month}/{day} {time} {name}".format (
+                    month = e ["month"],
+                    day = e ["day"],
+                    time = e ["hour"].replace (' ', ':'),
+                    name = e ["name"] )
+                + u'\u001b[0m')
 
     return 0
