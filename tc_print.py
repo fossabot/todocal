@@ -9,6 +9,9 @@ import tc_time
 import tc_data
 import tc_handler
 
+__check_mark = '\u001b[37m\u2713\u001b[0m'
+__cross_mark = '\u001b[31m\u2717\u001b[0m'
+
 def __hour_to_time (hour):
     hour = hour.replace (' ', ':')
     if ':' not in hour:
@@ -40,11 +43,12 @@ def print_week_todos ():
 
     for e in summary:
         print (u'\u001b[38;5;' + e ["color"] + 'm' +
-                "{month:>2}/{day:<2} {time:<5} {name:.>30}".format (
+                "{month:>2}/{day:<2} {time:<5} {name:.>30} {done}".format (
                     month = e ["month"],
                     day   = e ["day"],
                     time  = __hour_to_time (e ["hour"]),
-                    name  = e ["name"] )
+                    name  = e ["name"],
+                    done  = __check_mark if e ["done"] == "yes" else __cross_mark )
                 + u'\u001b[0m')
 
     return 0
@@ -61,12 +65,20 @@ def print_week_all ():
     summary = tc_handler.sort (to_be_done) + tc_handler.sort (the_rest)
 
     for e in summary:
+        try:
+            if e ["done"] == "yes":
+                done_mark = __check_mark
+            else:
+                done_mark = __cross_mark
+        except:
+            done_mark = ' '
         print (u'\u001b[38;5;' + e ["color"] + 'm' +
-                "{month:>2}/{day:<2} {time:<5} {name:.>30}".format (
+                "{month:>2}/{day:<2} {time:<5} {name:.>30} {done}".format (
                     month = e ["month"],
                     day   = e ["day"],
                     time  = __hour_to_time (e ["hour"]),
-                    name  = e ["name"] )
+                    name  = e ["name"],
+                    done  = done_mark )
                 + u'\u001b[0m')
 
     return 0
