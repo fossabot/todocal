@@ -1,8 +1,8 @@
 # TodoCal Event Handler
-
+# ---------------------
 # filtering : exclude events outside of current week span
 # convertion : convert all into no-repeat default or todo events
-
+# -------
 # Catelog
 # summarize_defaults (DATA, TIME_INFO): return summary (event list object)
 # summarize_todos --
