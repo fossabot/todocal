@@ -229,6 +229,11 @@ def summarize_todos (DATA, TIME_INFO):
     daily_todos   = __import_daily_todo (DATA, TIME_INFO)
     no_rep_todos  = [event for event in DATA ["events"] ["no-repeat"] ["todo"]]
 
+    yearly_color  = __get_color_code (DATA, "yearly default")
+    monthly_color = __get_color_code (DATA, "monthly default")
+    weekly_color  = __get_color_code (DATA, "weekly default")
+    daily_color   = __get_color_code (DATA, "daily default")
+    no_rep_color  = __get_color_code (DATA, "no-repeat default")
     yearly_todo_color  = __get_color_code (DATA, "yearly todo")
     yearly_late_color  = __get_color_code (DATA, "yearly late")
     monthly_todo_color = __get_color_code (DATA, "monthly todo")
@@ -251,26 +256,41 @@ def summarize_todos (DATA, TIME_INFO):
         return current_datetime_object > event_datetime_object
 
     for e in yearly_todos:
+        if e ["done"] == "yes":
+            e ["color"] = yearly_color
+            continue
         if is_late (e):
             e ["color"] = yearly_late_color
         else:
             e ["color"] = yearly_todo_color
     for e in monthly_todos:
+        if e ["done"] == "yes":
+            e ["color"] = monthly_color
+            continue
         if is_late (e):
             e ["color"] = monthly_late_color
         else:
             e ["color"] = monthly_todo_color
     for e in weekly_todos:
+        if e ["done"] == "yes":
+            e ["color"] = weekly_color
+            continue
         if is_late (e):
             e ["color"] = weekly_late_color
         else:
             e ["color"] = weekly_todo_color
     for e in daily_todos:
+        if e ["done"] == "yes":
+            e ["color"] = daily_color
+            continue
         if is_late (e):
             e ["color"] = daily_late_color
         else:
             e ["color"] = daily_todo_color
     for e in no_rep_todos:
+        if e ["done"] == "yes":
+            e ["color"] = no_rep_color
+            continue
         if is_late (e):
             e ["color"] = no_rep_late_color
         else:
