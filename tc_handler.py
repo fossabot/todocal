@@ -196,10 +196,10 @@ def __sort (E):
         except:
             minute = 0
         return minute
-    return sorted (E, key = lambda E : (-1) * (int (E ["month"]) * 1000000 +
-                                               int (E ["day"]) * 10000 +
-                                               get_hour (E) * 100 +
-                                               get_minute (E)))
+    return sorted (E, key = lambda E : (int (E ["month"]) * 1000000 +
+                                        int (E ["day"]) * 10000 +
+                                        get_hour (E) * 100 +
+                                        get_minute (E)))
 
 def summarize_defaults (DATA, TIME_INFO):
     yearly_defaults  = __import_yearly_default (DATA, TIME_INFO)
