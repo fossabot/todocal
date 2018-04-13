@@ -32,7 +32,7 @@ def __get_dimension_info (raw_info):
 
     return (calendar_width, max_height, (time_col_width, between_col_width, col_width))
 
-def __get_calendar_height (max_height, col_width, E):
+def __get_calendar_height (max_height, E):
     # information in e in E
     # name, month, day, hour, length, (done), mark (0/1 char)
 
@@ -77,3 +77,11 @@ def __get_calendar_height (max_height, col_width, E):
             spans.append (i)
     # e.g. spans = [0, 7, 8, 10, 15]
     # => exist events in 0-1, 7-9, 10-11, 15-16
+
+    available_height = max_height - 3 # reserve top rows for calendar header
+    span_height = available_height // (len (spans))
+
+    if span_height <= 1:
+        tc_meta.raise_ERROR ("TodoCal: unimplemented situation.")
+    # assert (span_height >= 2)
+
