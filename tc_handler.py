@@ -6,6 +6,7 @@
 # Catelog
 # summarize_defaults (DATA, TIME_INFO): return summary (event list object)
 # summarize_todos --
+# sort (E): return E sorted with ["month"] ["day"] ["hour"] attributes
 
 import datetime
 

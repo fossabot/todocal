@@ -1,5 +1,10 @@
 # TodoCal Print Functions
 
+# Catelog
+# print_week_defaults (): print default events provided by summary from handler
+# print_week_todos (): print todo events provided by summary from handler
+# print_week_all (): print default & todo events sorted by status/time
+
 import tc_time
 import tc_data
 import tc_handler
