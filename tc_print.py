@@ -8,6 +8,8 @@ def __hour_to_time (hour):
     hour = hour.replace (' ', ':')
     if ':' not in hour:
         hour += ':00'
+    if len (hour) <= 4:
+        hour = '0' + hour
     return hour
 
 def print_week_defaults ():
