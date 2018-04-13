@@ -83,7 +83,7 @@ def print_week_all ():
 
     return 0
 
-def pass_events ():
+def pass_info ():
     TIME_INFO = tc_time.get_time_info ()
     DATA = tc_data.DATA
     summary_defaults = tc_handler.summarize_defaults (DATA, TIME_INFO)
@@ -100,5 +100,5 @@ def pass_events ():
         except:
             e ["mark"] = ''
 
-    return summary
+    return (summary, DATA ['meta'] ['dimension'])
 
