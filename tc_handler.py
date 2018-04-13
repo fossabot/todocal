@@ -206,7 +206,8 @@ def summarize_defaults (DATA, TIME_INFO):
     monthly_defaults = __import_monthly_default (DATA, TIME_INFO)
     weekly_defaults  = __import_weekly_default (DATA, TIME_INFO)
     daily_defaults   = __import_daily_default (DATA, TIME_INFO)
-    no_rep_defaults  = [event for event in DATA ["events"] ["no-repeat"] ["default"]]
+    no_rep_defaults  = [event for event in DATA ["events"] ["no-repeat"] ["default"]
+                        if __day_in_week (TIME_INFO, int (event ["month"]), int (event ["day"]))]
 
     yearly_color  = __get_color_code (DATA, "yearly default")
     monthly_color = __get_color_code (DATA, "monthly default")
@@ -241,7 +242,8 @@ def summarize_todos (DATA, TIME_INFO):
     monthly_todos = __import_monthly_todo (DATA, TIME_INFO)
     weekly_todos  = __import_weekly_todo (DATA, TIME_INFO)
     daily_todos   = __import_daily_todo (DATA, TIME_INFO)
-    no_rep_todos  = [event for event in DATA ["events"] ["no-repeat"] ["todo"]]
+    no_rep_todos  = [event for event in DATA ["events"] ["no-repeat"] ["todo"]
+                        if __day_in_week (TIME_INFO, int (event ["month"]), int (event ["day"]))]
 
     yearly_color  = __get_color_code (DATA, "yearly default")
     monthly_color = __get_color_code (DATA, "monthly default")
