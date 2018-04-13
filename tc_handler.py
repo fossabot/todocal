@@ -187,6 +187,20 @@ def __get_color_code (DATA, request):
         return late_color_code
     return '015' # white
 
+def __sort (E):
+    def get_hour (E):
+        return [int (s) for s in E ["hour"].split(' ')][0]
+    def get_minute (E):
+        try:
+            minute = [int (s) for s in E ["hour"].split(' ')][1]
+        except:
+            minute = 0
+        return minute
+    return sorted (E, key = lambda E : (-1) * (int (E ["month"]) * 1000000 +
+                                               int (E ["day"]) * 10000 +
+                                               get_hour (E) * 100 +
+                                               get_minute (E)))
+
 def summarize_defaults (DATA, TIME_INFO):
     yearly_defaults  = __import_yearly_default (DATA, TIME_INFO)
     monthly_defaults = __import_monthly_default (DATA, TIME_INFO)
