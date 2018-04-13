@@ -9,6 +9,7 @@
 # sort (E): return E sorted with ["month"] ["day"] ["hour"] attributes
 
 import datetime
+import tc_meta
 
 def __day_in_week (TIME_INFO, month, day):
     week_start_date_object = datetime.date (TIME_INFO ["year"], TIME_INFO ["week-start-month"], TIME_INFO ["week-start-day"])
@@ -161,25 +162,25 @@ def __get_color_code (DATA, request):
     try:
         [category, status] = [msg for msg in request.split (' ')]
     except:
-        print ('\u001b[31mUnexpected Error.\u001b[0m')
+        tc_meta.raiseERROR ("TodoCal: unexpected error.")
     assignment = DATA ['meta'] ['color']
     try:
         category_colors = assignment [category]
     except:
-        print ('\u001b[31mUnexpected Error.\u001b[0m')
+        tc_meta.raiseERROR ("TodoCal: unexpected error.")
     colors = [name for name in category_colors.split (' ')]
     try:
         default_color = colors[0]
         todo_color = colors [1]
         late_color = colors [2]
     except:
-        print ('\u001b[31mUnexpected Error.\u001b[0m')
+        tc_meta.raiseERROR ("TodoCal: unexpected error.")
     try:
         default_color_code = DATA ['meta'] ['color-code'] [default_color]
         todo_color_code = DATA ['meta'] ['color-code'] [todo_color]
         late_color_code = DATA ['meta'] ['color-code'] [late_color]
     except:
-        print ('\u001b[31mUnexpected Error.\u001b[0m')
+        tc_meta.raiseERROR ("Error: color codes not well defined.")
     if status == 'default':
         return default_color_code
     if status == 'todo':
