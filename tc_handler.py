@@ -228,6 +228,54 @@ def summarize_todos (DATA, TIME_INFO):
     weekly_todos  = __import_weekly_todo (DATA, TIME_INFO)
     daily_todos   = __import_daily_todo (DATA, TIME_INFO)
     no_rep_todos  = [event for event in DATA ["events"] ["no-repeat"] ["todo"]]
+
+    yearly_todo_color  = __get_color_code (DATA, "yearly todo")
+    yearly_late_color  = __get_color_code (DATA, "yearly late")
+    monthly_todo_color = __get_color_code (DATA, "monthly todo")
+    monthly_late_color = __get_color_code (DATA, "monthly late")
+    weekly_todo_color  = __get_color_code (DATA, "weekly todo")
+    weekly_late_color  = __get_color_code (DATA, "weekly late")
+    daily_todo_color   = __get_color_code (DATA, "daily todo")
+    daily_late_color   = __get_color_code (DATA, "daily late")
+    no_rep_todo_color  = __get_color_code (DATA, "no-repeat todo")
+    no_rep_late_color  = __get_color_code (DATA, "no-repeat late")
+
+    current_datetime_object = datetime.datetime (
+        TIME_INFO ["year"], TIME_INFO ["month"], TIME_INFO ["day"],
+        [int (s) for s in TIME_INFO ["hour"].split(' ')][0] )
+
+    def is_late (event):
+        event_datetime_object = datetime.datetime (
+            TIME_INFO ["year"], int (event ["month"]), int (event ["day"]),
+            [int (s) for s in event ["hour"].split(' ')][0] )
+        return current_datetime_object > event_datetime_object
+
+    for e in yearly_todos:
+        if is_late (e):
+            e ["color"] = yearly_late_color
+        else:
+            e ["color"] = yearly_todo_color
+    for e in monthly_todos:
+        if is_late (e):
+            e ["color"] = monthly_late_color
+        else:
+            e ["color"] = monthly_todo_color
+    for e in weekly_todos:
+        if is_late (e):
+            e ["color"] = weekly_late_color
+        else:
+            e ["color"] = weekly_todo_color
+    for e in daily_todos:
+        if is_late (e):
+            e ["color"] = daily_late_color
+        else:
+            e ["color"] = daily_todo_color
+    for e in no_rep_todos:
+        if is_late (e):
+            e ["color"] = no_rep_late_color
+        else:
+            e ["color"] = no_rep_todo_color
+
     summary = yearly_todos + monthly_todos + weekly_todos + daily_todos + no_rep_todos
 
     for event in summary: # type checking
