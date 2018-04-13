@@ -234,7 +234,7 @@ def summarize_defaults (DATA, TIME_INFO):
         assert (type (event["hour"])   == str)
         assert (type (event["length"]) == str)
 
-    return summary
+    return __sort (summary)
 
 def summarize_todos (DATA, TIME_INFO):
     yearly_todos  = __import_yearly_todo (DATA, TIME_INFO)
@@ -311,6 +311,11 @@ def summarize_todos (DATA, TIME_INFO):
             e ["color"] = no_rep_todo_color
 
     summary = yearly_todos + monthly_todos + weekly_todos + daily_todos + no_rep_todos
+
+    # re-arranging summary
+    todos_done = [e for e in summary if e ["done"] == "yes"]
+    to_be_done = [e for e in summary if e ["done"] == "no"]
+    summary = __sort (to_be_done) + __sort (todos_done)
 
     for event in summary: # type checking
         assert (type (event["name"])   == str)
