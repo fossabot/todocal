@@ -238,6 +238,7 @@ def summarize_defaults (DATA, TIME_INFO):
         assert (type (event["day"])    == str)
         assert (type (event["hour"])   == str)
         assert (type (event["length"]) == str)
+        assert (type (event["color"])  == str)
 
     return __sort (summary)
 
@@ -330,6 +331,7 @@ def summarize_todos (DATA, TIME_INFO):
         assert (type (event["hour"])   == str)
         assert (type (event["length"]) == str)
         assert (type (event["done"])   == str)
+        assert (type (event["color"])  == str)
 
     return summary
 
