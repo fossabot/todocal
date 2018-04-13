@@ -34,7 +34,7 @@ def __get_dimension_info (raw_info):
 
 def __get_calendar_height (max_height, E):
     # information in e in E
-    # name, month, day, hour, length, (done), mark (0/1 char)
+    # name, month, day, hour, length, (done), mark (0/1 char), color (str)
 
     for e in E:
         if ' ' not in e ["hour"]:
