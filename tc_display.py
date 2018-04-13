@@ -2,11 +2,11 @@
 # -------------------------------
 # Display handler creates string list for print module to display.
 
-from tc_print import pass_info
+from tc_print import pass_info # returns event list, dimension raw info, TIME_INFO
 import tc_meta
 import datetime
 
-def __get_dimension_info (raw_info):
+def __get_dimension_info (raw_info): # dimension raw info passed from pass_info
     try:
         cell_width = int (raw_info ["cell-width"])
     except:
@@ -32,14 +32,13 @@ def __get_dimension_info (raw_info):
 
     return (calendar_width, max_height, (time_col_width, between_col_width, col_width))
 
-def __get_calendar_height (max_height, E):
-    # information in e in E
+def __get_calendar_height (max_height, E): # max_height passed from __get_dimension_info
+    # information in e in E (passed from pass_info)
     # name, month, day, hour, length, (done), mark (0/1 char), color (str)
 
     for e in E:
         if ' ' not in e ["hour"]:
             e ["hour"] += " 00"
-    for e in E:
         e ["time-start-code"] = int (e ["hour"].replace (' ', ''))
         try:
             start_time = [int (s) for s in e ["hour"].split (' ')]
@@ -87,4 +86,53 @@ def __get_calendar_height (max_height, E):
 
     calendar_height = span_height * (len (spans)) + 3
     return (calendar_height, span_height, spans)
+
+def __prepare_events (E, TIME_INFO): # synthesize event information, return new list
+    synthesis = []
+    current_year = TIME_INFO ["year"]
+    for e in E:
+        new_info = {}
+        new_info ["name"] = e ["name"] # new_info -> name
+        if e ["mark"] != '':
+            new_info ["name"] += (' ' + e ["mark"]) # include todo mark in event name
+        event_date_object = datetime.datetime (year = current_year, month = int (e ["month"]), day = int (e ["day"]))
+        weekday = event_date_object.isoweekday ()
+        if weekday == 7:
+            weekday = 0
+        weekday = str (weekday)
+        new_info ["weekday"] = int (weekday) # new_info -> weekday (int)
+        new_info ["color-code"] = e ["color"] # new_info -> color-code (str)
+
+        # code segment copy ---------------------------------------------------
+        if ' ' not in e ["hour"]:
+            e ["hour"] += " 00"
+        e ["time-start-code"] = int (e ["hour"].replace (' ', ''))
+        try:
+            start_time = [int (s) for s in e ["hour"].split (' ')]
+            start_hour = start_time [0]
+            start_minute = start_time [1]
+        except:
+            tc_meta.raise_ERROR ("")
+        start_time_object = datetime.time (hour = start_hour, minute = start_minute)
+        try:
+            if e ["length"] == "":
+                end_time_object = start_time_object
+            else:
+                end_time_object = start_time_object + datetime.timedelta (minutes = int (e ["length"]))
+        except:
+            tc_meta.raise_ERROR ("")
+        time_end_code = end_time_object.hour * 100 + end_time_object.minute
+        if time_end_code < e ["time-start-code"]:
+            time_end_code = 2359
+        if time_end_code != 0 and time_end_code % 100 == 0:
+            time_end_code -= 41 # reduce to past hour
+        e ["time-end-code"] = time_end_code
+        # code segment copy end -----------------------------------------------
+
+        new_info ["time-start-code"] = e ["time-start-code"]
+        new_info ["time-end-code"] = e ["time-end-code"]
+        # new_info -> name, weekday (int), color-code (str), time-start-code (int), time-end-code (int)
+
+        synthesis.append (new_info)
+    return synthesis # synthesized new event list
 

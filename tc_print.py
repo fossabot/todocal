@@ -4,7 +4,7 @@
 # print_week_defaults (): print default events provided by summary from handler
 # print_week_todos (): print todo events provided by summary from handler
 # print_week_all (): print default & todo events sorted by status/time
-# pass_info (): return (summary, dimension raw info) passing to display module
+# pass_info (): return (summary, dimension raw info, TIME_INFO) passing to display module
 
 import tc_time
 import tc_data
@@ -101,5 +101,5 @@ def pass_info ():
         except:
             e ["mark"] = ''
 
-    return (summary, DATA ['meta'] ['dimension'])
+    return (summary, DATA ['meta'] ['dimension'], TIME_INFO)
 
