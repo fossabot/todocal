@@ -83,3 +83,22 @@ def print_week_all ():
 
     return 0
 
+def pass_events ():
+    TIME_INFO = tc_time.get_time_info ()
+    DATA = tc_data.DATA
+    summary_defaults = tc_handler.summarize_defaults (DATA, TIME_INFO)
+    summary_todos = tc_handler.summarize_todos (DATA, TIME_INFO)
+
+    summary = summary_defaults + summary_todos # not-sorted
+
+    for e in summary:
+        try:
+            if e ["done"] == "yes":
+                e ["mark"] = __check_mark
+            else:
+                e ["mark"] = __cross_mark
+        except:
+            e ["mark"] = ''
+
+    return summary
+
