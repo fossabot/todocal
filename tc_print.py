@@ -23,7 +23,7 @@ def __hour_to_time (hour):
 
 def print_week_defaults ():
     TIME_INFO = tc_time.get_time_info ()
-    DATA = tc_data.DATA
+    DATA = tc_data.get_DATA ()
     summary = tc_handler.summarize_defaults (DATA, TIME_INFO)
 
     for e in summary:
@@ -39,7 +39,7 @@ def print_week_defaults ():
 
 def print_week_todos ():
     TIME_INFO = tc_time.get_time_info ()
-    DATA = tc_data.DATA
+    DATA = tc_data.get_DATA ()
     summary = tc_handler.summarize_todos (DATA, TIME_INFO)
 
     for e in summary:
@@ -56,7 +56,7 @@ def print_week_todos ():
 
 def print_week_all ():
     TIME_INFO = tc_time.get_time_info ()
-    DATA = tc_data.DATA
+    DATA = tc_data.get_DATA ()
     summary_defaults = tc_handler.summarize_defaults (DATA, TIME_INFO)
     summary_todos = tc_handler.summarize_todos (DATA, TIME_INFO)
 
@@ -86,7 +86,7 @@ def print_week_all ():
 
 def pass_info ():
     TIME_INFO = tc_time.get_time_info ()
-    DATA = tc_data.DATA
+    DATA = tc_data.get_DATA ()
     summary_defaults = tc_handler.summarize_defaults (DATA, TIME_INFO)
     summary_todos = tc_handler.summarize_todos (DATA, TIME_INFO)
 

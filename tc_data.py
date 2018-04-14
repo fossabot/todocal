@@ -1,9 +1,9 @@
 # TodoCal Data Structure in Python
 # --------------------------------
 # Catelog
-# DATA (dictionary object)
+# get_DATA: returns (dictionary object)
 
-DATA = {
+__DATA = {
         "meta" : {
             "color-code" : {
                 "white"        : "015",
@@ -102,4 +102,7 @@ DATA = {
                 },
             },
         }
+
+def get_DATA ():
+    return __DATA
 
