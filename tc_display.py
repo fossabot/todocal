@@ -5,6 +5,7 @@
 from tc_print import pass_info # returns event list, dimension raw info, TIME_INFO
 import tc_meta
 import datetime
+from textwrap import *
 
 def __get_dimension_info (raw_info): # dimension raw info passed from pass_info
     try:
@@ -223,6 +224,56 @@ def make_display ():
             hour_code = e ["time-start-code"] // 100
             D [hour_code].append (e) # span bucket include this event
     # SYNs_DICT is list of dictionaries of (hour span int, event list) as (key, value)
+
+    T = TextWrapper ()
+    T.width = col_width
+    T.initial_indent = "* "
+
+    # making event display with col_width, span_height (for one weekday bucket)
+    def make_main_display (col_width, span_height, DICT, T):
+        # ensure span_height allow all events normal display
+        for (span_hour, E) in DICT.items ():
+            if len(E) > span_height:
+                tc_meta.raise_ERROR ("TodoCal: calendar height too small.")
+            else:
+                continue
+        COL = [] # make list of strings for this column display
+        for span_hour in sorted (DICT): # access span hour event lists in order
+            E = DICT [span_hour] # access to event list
+            if len(E) == 0:
+                for _ in span_height: # fill span hour height with white space
+                    COL.append (' ' * col_width)
+                continue
+            # handle actual events
+            individual_span = span_height // (len(E))
+            assert (individual_span >= 1)
+            count_use_span = 0
+            for e in E:
+                e_display = T.wrap (e ["name"]) # return string list of <= col_width
+                if len(e_display) > individual_span: # event overflows height
+                    e_display = e_display [:individual_span] # slice excess
+                    last_line = e_display [-1]
+                    if ' ' not in last_line:
+                        last_line = "..."
+                    else:
+                        white_space_index = last_line.rfind (' ')
+                        last_line = last_line [:white_space_index] + "..."
+                    e_display [-1] = last_line # update last line in display
+                    assert (len(e_display) == individual_span)
+                for line in e_display:
+                    COL.append ('\u001b[38;5;' + e ["color-code"] + 'm' +
+                                ('{line_str:<' + col_width + '}').format (line_str = line) +
+                                '\u001b[0m')
+                    count_use_span += 1
+            for _ in range(span_height - count_use_span): # fill un-used height
+                COL.append (' ' * col_width)
+            continue
+        assert (len(COL) == span_height * len(spans))
+        return COL # encoded with color information
+
+    COLs = [[], [], [], [], [], [], []]
+    for i in range(7):
+        COLs [i] = make_main_display (col_width, span_height, SYNs_DICT [i], T)
 
     return DISPLAY
 
