@@ -172,15 +172,17 @@ def make_display ():
     def make_calendar_heading ():
         heading = "TodoCal Week Summary"
         heading += ' '
+        heading += "\u001b[36m"
         heading += (str(TIME_INFO ["week-start-month"]) + '/' + str(TIME_INFO ["week-start-day"]))
         heading += ' -- '
         heading += (str(TIME_INFO ["week-end-month"]) + '/' + str(TIME_INFO ["week-end-day"]))
+        heading += "\u001b[0m"
         heading = (("{header:^" + str(calendar_width) + "}").format (header = heading))
         return heading
     DISPLAY.append (make_calendar_heading ())
 
     def make_weekday_row ():
-        weekday_row = ""
+        weekday_row = "\u001b[37m"
         weekday_below_row = ""
         weekday_row += (' ' * time_col_width)
         weekday_below_row += (' ' * time_col_width)
@@ -189,12 +191,12 @@ def make_display ():
             weekday_row += ' '
             weekday_below_row += ' '
             weekday_row += (("{weekday:^" + str(col_width) + "}").format (weekday = weekdays [i]))
-            weekday_below_row += (("{filler:^" + str(col_width) + "}").format (filler = ('-' * len(weekdays[i]))))
+            weekday_below_row += (("{filler:^" + str(col_width) + "}").format (filler = ('-' * (len(weekdays[i]) + 2))))
         return (weekday_row, weekday_below_row)
     (weekday_row, weekday_below_row) = make_weekday_row ()
 
-    DISPLAY += weekday_row
-    DISPLAY += weekday_below_row
+    DISPLAY.append (weekday_row)
+    DISPLAY.append (weekday_below_row + "\u001b[0m")
 
     return DISPLAY
 
