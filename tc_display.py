@@ -153,6 +153,7 @@ def make_display ():
 
     (calendar_width, max_height, (time_col_width, between_col_width, col_width)) = __get_dimension_info (dimension_raw_info)
     (calendar_height, span_height, spans) = __get_calendar_height (max_height, E)
+    # spans is int list
 
 # |---------------------- calendar width ---------------------------|
 # |----time_col----|---------------(header)-------------------------|
@@ -197,6 +198,28 @@ def make_display ():
 
     DISPLAY.append (weekday_row)
     DISPLAY.append (weekday_below_row + "\u001b[0m")
+
+    E_SYNs = [[], [], [], [], [], [], []] # events re-synthesized by weekdays
+    for e in synthesis:
+        E_SYNs [e ["weekday"]].append (e)
+    for L in E_SYNs: # sort events in each bucket by time-start-code (int)
+        sorted (L, key = lambda e : (e ["time-start-code"] * 10000 + e ["time-end-code"]))
+
+    SYNs_DICT = [] # re-synthesized: in each weekday sort events in buckets by time-start-code
+    for _ in range(7):
+        E_DICT = {}
+        for hour in spans:
+            E_DICT [hour] = [] # initialize each bucket (hour span in weekday)
+        SYNs_DICT.append (E_DICT)
+    # put events in re-synthesis
+    for i in range(7):
+        L = E_SYNs [i] # address event list by reference in first re-synthesis
+        D = SYNs_DICT [i] # address event dict by reference in second re-synthesis
+        # transfer events in first re-syn to second re-syn
+        for e in L:
+            hour_code = e ["time-start-code"] // 100
+            D [hour_code].append (e) # span bucket include this event
+    # SYNs_DICT is list of dictionaries of (hour span int, event list) as (key, value)
 
     return DISPLAY
 
