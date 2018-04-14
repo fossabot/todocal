@@ -241,7 +241,7 @@ def make_display ():
         for span_hour in sorted (DICT): # access span hour event lists in order
             E = DICT [span_hour] # access to event list
             if len(E) == 0:
-                for _ in span_height: # fill span hour height with white space
+                for _ in range(span_height): # fill span hour height with white space
                     COL.append (' ' * col_width)
                 continue
             # handle actual events
