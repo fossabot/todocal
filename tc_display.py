@@ -249,6 +249,10 @@ def make_display ():
             assert (individual_span >= 1)
             count_use_span = 0
             for e in E:
+                if '\u001b[37m\u2713\u001b[0m' in e ["name"]:
+                    e ["name"] = e ["name"].replace ('\u001b[37m\u2713\u001b[0m', '^') # forbidden character 1
+                if '\u001b[31m\u2717\u001b[0m' in e ["name"]:
+                    e ["name"] = e ["name"].replace ('\u001b[31m\u2717\u001b[0m', '%') # forbidden character 2
                 e_display = T.wrap (e ["name"]) # return string list of <= col_width
                 if len(e_display) > individual_span: # event overflows height
                     e_display = e_display [:individual_span] # slice excess
@@ -290,6 +294,10 @@ def make_display ():
             ROWs [i] = "       " + ROWs [i]
 
     for r in ROWs:
+        if '^' in r:
+            r = r.replace ('^', '\u001b[37m\u2713\u001b[0m')
+        if '%' in r:
+            r = r.replace ('%', '\u001b[31m\u2717\u001b[0m')
         DISPLAY.append (r)
     DISPLAY.append ('\u001b[37m' + ('{filler:^' + str(calendar_width) + '}').format (filler = '-' * (calendar_width - 3)) +
                     '\u001b[0m')
