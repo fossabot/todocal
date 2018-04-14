@@ -1,6 +1,6 @@
 # TodoCal Handle Calendar Display
 # -------------------------------
-# Display handler creates string list for print module to display.
+# (display module has higher hierarchy than print module)
 
 from tc_print import pass_info # returns event list, dimension raw info, TIME_INFO
 import tc_meta
