@@ -37,6 +37,8 @@ def __get_calendar_height (max_height, E): # max_height passed from __get_dimens
     # name, month, day, hour, length, (done), mark (0/1 char), color (str)
 
     for e in E:
+
+        # code segment first copy ---------------------------------------------
         if ' ' not in e ["hour"]:
             e ["hour"] += " 00"
         e ["time-start-code"] = int (e ["hour"].replace (' ', ''))
@@ -45,21 +47,25 @@ def __get_calendar_height (max_height, E): # max_height passed from __get_dimens
             start_hour = start_time [0]
             start_minute = start_time [1]
         except:
-            tc_meta.raise_ERROR ("")
+            tc_meta.raise_ERROR ("TodoCal: time convertion error.")
         start_time_object = datetime.time (hour = start_hour, minute = start_minute)
+        start_time_object = datetime.datetime (year = 2000, month = 1, day = 1,
+                                                            hour = start_time_object.hour,
+                                                            minute = start_time_object.minute) # convert time to datetime
         try:
             if e ["length"] == "":
                 end_time_object = start_time_object
             else:
                 end_time_object = start_time_object + datetime.timedelta (minutes = int (e ["length"]))
         except:
-            tc_meta.raise_ERROR ("")
+            tc_meta.raise_ERROR ("TodoCal: time calculation error.")
         time_end_code = end_time_object.hour * 100 + end_time_object.minute
         if time_end_code < e ["time-start-code"]:
             time_end_code = 2359
         if time_end_code != 0 and time_end_code % 100 == 0:
             time_end_code -= 41 # reduce to past hour
         e ["time-end-code"] = time_end_code
+        # code segment end ----------------------------------------------------
     # e.g. hour = "15 20", length = "30"
     # time-start-code = 1520, time-end-code = 1550
 
@@ -112,15 +118,18 @@ def __prepare_events (E, TIME_INFO): # synthesize event information, return new 
             start_hour = start_time [0]
             start_minute = start_time [1]
         except:
-            tc_meta.raise_ERROR ("")
+            tc_meta.raise_ERROR ("TodoCal: time convertion error.")
         start_time_object = datetime.time (hour = start_hour, minute = start_minute)
+        start_time_object = datetime.datetime (year = 2000, month = 1, day = 1,
+                                                            hour = start_time_object.hour,
+                                                            minute = start_time_object.minute) # convert time to datetime
         try:
             if e ["length"] == "":
                 end_time_object = start_time_object
             else:
                 end_time_object = start_time_object + datetime.timedelta (minutes = int (e ["length"]))
         except:
-            tc_meta.raise_ERROR ("")
+            tc_meta.raise_ERROR ("TodoCal: time calculation error.")
         time_end_code = end_time_object.hour * 100 + end_time_object.minute
         if time_end_code < e ["time-start-code"]:
             time_end_code = 2359
