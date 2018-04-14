@@ -153,4 +153,38 @@ def make_display ():
 # |......| .......... => span_height = 2 ...........................|
 # | 9:00 | ---------> ..............................................|
 # |_________________ calendar height (||) __________________________|
+# Assumptions:
+# time_col_width >= 7
+# col_width      >= 8
+# span_height    >= 2
+
+    DISPLAY = [] # string list for calendar display (according to above)
+
+    def make_calendar_heading ():
+        heading = "TodoCal Week Summary"
+        heading += (str(TIME_INFO ["week-start-month"]) + '/' + str(TIME_INFO ["week-start-day"]))
+        heading += '-'
+        heading += (str(TIME_INFO ["week-end-month"]) + '/' + str(TIME_INFO ["week-end-day"]))
+        heading = (("{header:^" + str(calendar_width) + "}").format (header = heading))
+        return heading
+    DISPLAY.append (make_calendar_heading ())
+
+    def make_weekday_row ():
+        weekday_row = ""
+        weekday_below_row = ""
+        weekday_row += (' ' * time_col_width)
+        weekday_below_row += (' ' * time_col_width)
+        weekdays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
+        for i in range(7):
+            weekday_row += ' '
+            weekday_below_row += ' '
+            weekday_row += (("{weekday:^" + str(col_width) + "}").format (weekday = weekdays [i]))
+            weekday_below_row += (("{filler:^" + str(col_width) + "}").format (filler = ('-' * len(weekdays[i]))))
+        return (weekday_row, weekday_below_row)
+    (weekday_row, weekday_below_row) = make_weekday_row ()
+
+    DISPLAY += weekday_row
+    DISPLAY += weekday_below_row
+
+    return DISPLAY
 
