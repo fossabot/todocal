@@ -8,7 +8,7 @@ This project is currently under development.
 
 ## Roadmap
 
-- [ ] Handle calendar display.
+- [x] Handle calendar display.
 - [ ] Handle event input, modification, deletion.
 - [ ] Customization.
 - [ ] Installation & Uninstallation.
