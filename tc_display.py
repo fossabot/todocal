@@ -171,8 +171,9 @@ def make_display ():
 
     def make_calendar_heading ():
         heading = "TodoCal Week Summary"
+        heading += ' '
         heading += (str(TIME_INFO ["week-start-month"]) + '/' + str(TIME_INFO ["week-start-day"]))
-        heading += '-'
+        heading += ' -- '
         heading += (str(TIME_INFO ["week-end-month"]) + '/' + str(TIME_INFO ["week-end-day"]))
         heading = (("{header:^" + str(calendar_width) + "}").format (header = heading))
         return heading
