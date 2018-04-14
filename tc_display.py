@@ -262,7 +262,7 @@ def make_display ():
                     assert (len(e_display) == individual_span)
                 for line in e_display:
                     COL.append ('\u001b[38;5;' + e ["color-code"] + 'm' +
-                                ('{line_str:<' + col_width + '}').format (line_str = line) +
+                                ('{line_str:<' + str(col_width) + '}').format (line_str = line) +
                                 '\u001b[0m')
                     count_use_span += 1
             for _ in range(span_height - count_use_span): # fill un-used height
