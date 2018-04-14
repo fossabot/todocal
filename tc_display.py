@@ -287,7 +287,7 @@ def make_display ():
             hour_index = i // span_height
             ROWs [i] = (' {hour:>2}:00 '.format (hour = spans [hour_index])) + ROWs [i]
         else:
-            ROWs [i] = "   :   " + ROWs [i]
+            ROWs [i] = "       " + ROWs [i]
 
     for r in ROWs:
         DISPLAY.append (r)
