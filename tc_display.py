@@ -275,13 +275,13 @@ def make_display ():
     for i in range(7):
         COLs [i] = make_main_display (col_width, span_height, SYNs_DICT [i], T)
 
-    ROWs = [(' ' + COLs[0][i] +
-            ' ' + COLs[1][i] +
-            ' ' + COLs[2][i] +
-            ' ' + COLs[3][i] +
-            ' ' + COLs[4][i] +
-            ' ' + COLs[5][i] +
-            ' ' + COLs[6][i]) for i in range (len (COLs[0]))]
+    ROWs = [('\u001b[37m|\u001b[0m' + COLs[0][i] +
+            '\u001b[37m|\u001b[0m' + COLs[1][i] +
+            '\u001b[37m|\u001b[0m' + COLs[2][i] +
+            '\u001b[37m|\u001b[0m' + COLs[3][i] +
+            '\u001b[37m|\u001b[0m' + COLs[4][i] +
+            '\u001b[37m|\u001b[0m' + COLs[5][i] +
+            '\u001b[37m|\u001b[0m' + COLs[6][i]) for i in range (len (COLs[0]))]
     for i in range(len(ROWs)):
         if i % span_height == 0:
             hour_index = i // span_height
@@ -291,6 +291,8 @@ def make_display ():
 
     for r in ROWs:
         DISPLAY.append (r)
+    DISPLAY.append ('\u001b[37m' + ('{filler:^' + str(calendar_width) + '}').format (filler = '-' * (calendar_width - 3)) +
+                    '\u001b[0m')
 
     return DISPLAY
 
