@@ -198,13 +198,16 @@ def make_display ():
 
     DISPLAY.append (weekday_row)
     DISPLAY.append (weekday_below_row + "\u001b[0m")
+    # Above: first three rows of calendar display
 
+    # first event re-synthesis
     E_SYNs = [[], [], [], [], [], [], []] # events re-synthesized by weekdays
     for e in synthesis:
         E_SYNs [e ["weekday"]].append (e)
     for L in E_SYNs: # sort events in each bucket by time-start-code (int)
         sorted (L, key = lambda e : (e ["time-start-code"] * 10000 + e ["time-end-code"]))
 
+    # second event re-synthesis
     SYNs_DICT = [] # re-synthesized: in each weekday sort events in buckets by time-start-code
     for _ in range(7):
         E_DICT = {}
