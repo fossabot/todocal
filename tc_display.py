@@ -191,7 +191,7 @@ def make_display ():
             weekday_row += ' '
             weekday_below_row += ' '
             weekday_row += (("{weekday:^" + str(col_width) + "}").format (weekday = weekdays [i]))
-            weekday_below_row += (("{filler:^" + str(col_width) + "}").format (filler = ('-' * (len(weekdays[i]) + 2))))
+            weekday_below_row += (("{filler:^" + str(col_width) + "}").format (filler = ('-' * (col_width - 4))))
         return (weekday_row, weekday_below_row)
     (weekday_row, weekday_below_row) = make_weekday_row ()
 
