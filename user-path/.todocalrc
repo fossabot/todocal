@@ -1,0 +1,15 @@
+# This file defines some meta data for TodoCal.
+
+color {
+  yearly    : green red orange
+  monthly   : green red yellow
+  weekly    : green orange red
+  daily     : green blue red
+  no-repeat : green pink magenta
+}
+
+dimension {
+  cell-width : 36
+  max-height : 30
+}
+
