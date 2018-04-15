@@ -2,6 +2,10 @@
 # --------------------------------
 # Catelog
 # get_DATA: returns (dictionary object)
+# parse_DATA: extract data from file and parse dictionary object (unimplemented)
+
+def parse_DATA ():
+    pass
 
 __DATA = {
         "meta" : {
