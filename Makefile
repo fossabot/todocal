@@ -33,9 +33,5 @@ display: tc_display.py
 	@echo 'calendar = make_display()' >> test_display.py
 	@echo 'for s in calendar:' >> test_display.py
 	@echo '    print (s)' >> test_display.py
-	@echo 'display with python 3'
 	@python3 test_display.py
-	@echo 'display with python 2'
-	@python  test_display.py
-	@rm -rf test_display.py
 	make clean
