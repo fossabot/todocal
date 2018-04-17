@@ -112,12 +112,12 @@ def __parse_DATA ():
     DATA ["events"] ["monthly"] ["default"]  = [parse_event (line) for line in monthly_default]
     DATA ["events"] ["weekly"] ["default"]   = [parse_event (line) for line in weekly_default]
     DATA ["events"] ["daily"] ["default"]    = [parse_event (line) for line in daily_default]
-    DATA ["events"] ["norepeat"] ["default"] = [parse_event (line) for line in norepeat_default]
+    DATA ["events"] ["no-repeat"] ["default"] = [parse_event (line) for line in norepeat_default]
     DATA ["events"] ["yearly"] ["todo"]   = [parse_event (line) for line in yearly_todo]
     DATA ["events"] ["monthly"] ["todo"]  = [parse_event (line) for line in monthly_todo]
     DATA ["events"] ["weekly"] ["todo"]   = [parse_event (line) for line in weekly_todo]
     DATA ["events"] ["daily"] ["todo"]    = [parse_event (line) for line in daily_todo]
-    DATA ["events"] ["norepeat"] ["todo"] = [parse_event (line) for line in norepeat_todo]
+    DATA ["events"] ["no-repeat"] ["todo"] = [parse_event (line) for line in norepeat_todo]
 
     # parse color codes
     for line in colorcode:
