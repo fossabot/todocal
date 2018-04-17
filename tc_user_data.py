@@ -124,7 +124,7 @@ def tcl_list_all ():
             mark = tc_meta.check_mark
         else:
             mark = tc_meta.cross_mark
-        RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {mark_s}".format (e_name = e ["name"],
+        RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {e_time} {mark_s}".format (e_name = e ["name"],
                     e_month = e ["month"], e_day = ["day"], e_time = make_hour_str (e ["hour"]), mark_s = mark))
 
     counter = 0
