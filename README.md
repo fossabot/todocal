@@ -10,6 +10,6 @@ This project is currently under development.
 
 - [x] Handle calendar display.
 - [x] Process data storage and parse.
-- [ ] Handle event input, modification, deletion.
+- [ ] Handle event input, modification, deletion. (In progress.)
 - [ ] Installation & Uninstallation.
 
