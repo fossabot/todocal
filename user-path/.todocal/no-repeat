@@ -2,8 +2,6 @@
 
 __default
 
-{ name : NoRep Test , month : 4, day  :    18,  hour : 10, length : 40}
-
 __todo
 
 { name : Skype Meet , month : 4, day:19,hour:10, length:30, done:no}

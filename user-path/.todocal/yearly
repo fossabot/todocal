@@ -5,6 +5,4 @@ __default
 { name : Sam's Birthday, month : 11, day : 30, whole-day : yes, hour : , length : }
 { name : Yuhao's Birthday, month : 11, day : 28, whole-day : yes, hour : , length : }
 
-{ name : Year Test, month : 4, day : 20, whole-day : no, hour : 11, length : 20 }
-
 __todo

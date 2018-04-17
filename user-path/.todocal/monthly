@@ -2,8 +2,4 @@
 
 __default
 
-{ name : Month Test 1, day : 17, whole-day : yes, hour : , length : }
-
 __todo
-
-{ name : Month Test 2, day : 18, whole-day : no, hour : 15, length : 50, done : no }
