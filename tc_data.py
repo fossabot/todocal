@@ -4,6 +4,35 @@
 # get_DATA: returns (dictionary object)
 # parse_DATA: extract data from file and parse dictionary object (unimplemented)
 
+__base_path = "user-path/"
+
+def __parse_files ():
+    f_settings = open (__base_path + ".todocalrc", 'r')
+    data_path = __base_path + ".todocal/"
+    f_colorcode = open (data_path + "color-code", 'r' )
+    f_yearly =    open (data_path + "yearly",     'r' )
+    f_monthly =   open (data_path + "monthly",    'r' )
+    f_weekly =    open (data_path + "weekly",     'r' )
+    f_daily =     open (data_path + "daily",      'r' )
+    f_norepeat =  open (data_path + "no-repeat",  'r' )
+
+    raw_settings  = [line.strip() for line in f_settings]
+    raw_colorcode = [line.strip() for line in f_colorcode]
+    raw_yearly    = [line.strip() for line in f_yearly]
+    raw_monthly   = [line.strip() for line in f_monthly]
+    raw_weekly    = [line.strip() for line in f_weekly]
+    raw_daily     = [line.strip() for line in f_daily]
+    raw_norepeat  = [line.strip() for line in f_norepeat]
+
+    # filter out empty lines and commented lines
+    filter_settings  = [s for s in raw_settings  if len(s) != 0 and s[0] != '#']
+    filter_colorcode = [s for s in raw_colorcode if len(s) != 0 and s[0] != '#']
+    filter_yearly    = [s for s in raw_yearly    if len(s) != 0 and s[0] != '#']
+    filter_monthly   = [s for s in raw_monthly   if len(s) != 0 and s[0] != '#']
+    filter_weekly    = [s for s in raw_weekly    if len(s) != 0 and s[0] != '#']
+    filter_daily     = [s for s in raw_daily     if len(s) != 0 and s[0] != '#']
+    filter_norepeat  = [s for s in raw_norepeat  if len(s) != 0 and s[0] != '#']
+
 def parse_DATA ():
     pass
 
