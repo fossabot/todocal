@@ -59,6 +59,18 @@ def tcl_list_all ():
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {mark_s}".format (e_name = e ["name"],
                     e_month = e ["month"], e_day = e ["day"], mark_s = mark))
 
+    # list monthly events
+    RET.append ("{key_str:-^50}".format (key_str = "monthly"))
+    for e in E_DICT ["monthly"] ["default"]:
+        RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2}".format (e_name = e ["name"], e_month = '--', e_day = e ["day"]))
+    for e in E_DICT ["monthly"] ["todo"]:
+        if e ["done"] == "yes":
+            mark = tc_meta.check_mark
+        else:
+            mark = tc_meta.cross_mark
+        RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {mark_s}".format (e_name = e ["name"],
+                    e_month = '--', e_day = e ["day"], mark_s = mark))
+
     counter = 0
     for i in range (len (RET)):
         if RET [i][0] != '-':
