@@ -33,8 +33,16 @@ def __parse_files ():
     filter_daily     = [s for s in raw_daily     if len(s) != 0 and s[0] != '#']
     filter_norepeat  = [s for s in raw_norepeat  if len(s) != 0 and s[0] != '#']
 
+    return (filter_settings,
+            filter_colorcode,
+            filter_yearly,
+            filter_monthly,
+            filter_weekly,
+            filter_daily,
+            filter_norepeat)
+
 def parse_DATA ():
-    pass
+    (settings, colorcode, yearly, monthly, weekly, daily, norepeat) = __parse_files ()
 
 __DATA = {
         "meta" : {
