@@ -19,6 +19,8 @@ def get_time_info ():
         hour = str (hour)
     elif minute > 50: # round up hour
         hour = str (hour + 1)
+        if hour == 24:
+            hour = 23
     else:
         hour = str (hour) + " " + str (minute)
 
