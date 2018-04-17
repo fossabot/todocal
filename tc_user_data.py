@@ -59,5 +59,12 @@ def tcl_list_all ():
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {mark_s}".format (e_name = e ["name"],
                     e_month = e ["month"], e_day = e ["day"], mark_s = mark))
 
+    counter = 0
+    for i in range (len (RET)):
+        if RET [i][0] != '-':
+            counter += 1
+            RET [i] = ("[{count:0>2}] ".format (count = str (counter))) + RET [i]
+        else:
+            RET [i] = '\u001b[37m' + RET [i] + '\u001b[0m'
     return RET
 
