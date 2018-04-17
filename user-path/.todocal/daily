@@ -1,0 +1,10 @@
+# This file should be auto-generated. Please do not edit.
+
+__default
+
+{ name : Day Test 1, hour : 3, length : 20}
+
+__todo
+
+{ name : Day Test 2, hour :17, length : 20, done : 0 1 4 6}
+
