@@ -71,6 +71,25 @@ def tcl_list_all ():
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {mark_s}".format (e_name = e ["name"],
                     e_month = '--', e_day = e ["day"], mark_s = mark))
 
+    # list weekly events
+    RET.append ("{key_str:-^50}".format (key_str = "weekly"))
+    WD = { 0 : "Sun",
+           1 : "Mon",
+           2 : "Tue",
+           3 : "Wed",
+           4 : "Thur",
+           5 : "Fri",
+           6 : "Sat" }
+    for e in E_DICT ["weekly"] ["default"]:
+        RET.append ("* {e_name:<30} {e_weekday:<4}".format (e_name = e ["name"], e_weekday = WD [int (e ["weekday"])]))
+    for e in E_DICT ["weekly"] ["todo"]:
+        if e ["done"] == "yes":
+            mark = tc_meta.check_mark
+        else:
+            mark = tc_meta.cross_mark
+        RET.append ("* {e_name:<30} {e_weekday:<4} {mark_s}".format (e_name = e ["name"],
+                    e_weekday = WD [int (e ["weekday"])], mark_s = mark))
+
     counter = 0
     for i in range (len (RET)):
         if RET [i][0] != '-':
