@@ -4,6 +4,8 @@
 # raise_ERROR (msg): raise fatal error and quit program
 # raise_WARNING (msg): print warning message continue program
 
+import os.path as osp
+
 def raise_ERROR (msg):
     if msg == "":
         msg = "TodoCal Error."
@@ -15,4 +17,4 @@ def raise_WARNING (msg):
         msg = "TodoCal Warning."
     print ('\u001b[33;1m' + msg + '\u001b[0m')
 
-base_path = "~/"
+base_path = osp.expanduser ('~') + "/"
