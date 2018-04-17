@@ -5,12 +5,10 @@
 
 import tc_meta
 
-__base_path = "user-path/"
-
-def __parse_files ():
+def __parse_files (base_path):
     try:
-        f_settings = open (__base_path + ".todocalrc", 'r')
-        data_path = __base_path + ".todocal/"
+        f_settings = open (base_path + ".todocalrc", 'r')
+        data_path = base_path + ".todocal/"
         f_colorcode = open (data_path + "color-code", 'r' )
         f_yearly =    open (data_path + "yearly",     'r' )
         f_monthly =   open (data_path + "monthly",    'r' )
@@ -45,8 +43,8 @@ def __parse_files ():
             filter_daily,
             filter_norepeat)
 
-def __parse_DATA ():
-    (settings, colorcode, yearly, monthly, weekly, daily, norepeat) = __parse_files ()
+def __parse_DATA (base_path):
+    (settings, colorcode, yearly, monthly, weekly, daily, norepeat) = __parse_files (base_path)
 
     DATA = {"meta" : {"color-code" : {}, "color" : {}, "dimension" : {}},
             "events" : {
@@ -211,5 +209,5 @@ __DATA = {
         }
 
 def get_DATA ():
-    return __parse_DATA ()
+    return __parse_DATA (tc_meta.base_path)
 

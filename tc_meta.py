@@ -15,3 +15,4 @@ def raise_WARNING (msg):
         msg = "TodoCal Warning."
     print ('\u001b[33;1m' + msg + '\u001b[0m')
 
+base_path = "user-path"
