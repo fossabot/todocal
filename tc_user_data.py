@@ -81,14 +81,14 @@ def tcl_list_all ():
            5 : "Fri",
            6 : "Sat" }
     for e in E_DICT ["weekly"] ["default"]:
-        RET.append ("* {e_name:<30} {e_weekday:<4}".format (e_name = e ["name"], e_weekday = WD [int (e ["weekday"])]))
+        RET.append ("* {e_name:<30} {e_weekday:<4}".format (e_name = e ["name"], e_weekday = WD [int (e ["day"])]))
     for e in E_DICT ["weekly"] ["todo"]:
         if e ["done"] == "yes":
             mark = tc_meta.check_mark
         else:
             mark = tc_meta.cross_mark
         RET.append ("* {e_name:<30} {e_weekday:<4} {mark_s}".format (e_name = e ["name"],
-                    e_weekday = WD [int (e ["weekday"])], mark_s = mark))
+                    e_weekday = WD [int (e ["day"])], mark_s = mark))
 
     counter = 0
     for i in range (len (RET)):
