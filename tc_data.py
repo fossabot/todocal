@@ -101,11 +101,11 @@ def __parse_DATA ():
     w_indices = get_categorizers (weekly)
     d_indices = get_categorizers (daily)
     n_indices = get_categorizers (norepeat)
-    (yearly_default, yearly_todo) = (yearly[y_indices[0] + 1 : y_indices], yearly[y_indices[1] + 1:len(yearly)])
-    (monthly_default, monthly_todo) = (monthly[m_indices[0] + 1 : m_indices], monthly[m_indices[1] + 1:len(monthly)])
-    (weekly_default, weekly_todo) = (weekly[w_indices[0] + 1 : w_indices], weekly[w_indices[1] + 1:len(weekly)])
-    (daily_default, daily_todo) = (daily[d_indices[0] + 1 : d_indices], daily[d_indices[1] + 1:len(daily)])
-    (norepeat_default, norepeat_todo) = (norepeat[n_indices[0] + 1 : n_indices], norepeat[n_indices[1] + 1:len(norepeat)])
+    (yearly_default, yearly_todo) = (yearly[y_indices[0] + 1 : y_indices[1]], yearly[y_indices[1] + 1:len(yearly)])
+    (monthly_default, monthly_todo) = (monthly[m_indices[0] + 1 : m_indices[1]], monthly[m_indices[1] + 1:len(monthly)])
+    (weekly_default, weekly_todo) = (weekly[w_indices[0] + 1 : w_indices[1]], weekly[w_indices[1] + 1:len(weekly)])
+    (daily_default, daily_todo) = (daily[d_indices[0] + 1 : d_indices[1]], daily[d_indices[1] + 1:len(daily)])
+    (norepeat_default, norepeat_todo) = (norepeat[n_indices[0] + 1 : n_indices[1]], norepeat[n_indices[1] + 1:len(norepeat)])
 
     # parse events and update DATA
     DATA ["events"] ["yearly"] ["default"]   = [parse_event (line) for line in yearly_default]
