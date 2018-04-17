@@ -184,12 +184,27 @@ def make_display ():
     DISPLAY.append (make_calendar_heading ())
 
     def make_weekday_row ():
+        today_index = TIME_INFO ["weekday"]
         weekday_row = "\u001b[37m"
         weekday_below_row = ""
         weekday_row += (' ' * time_col_width)
         weekday_below_row += (' ' * time_col_width)
         weekdays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
-        for i in range(7):
+        for i in range(today_index): # days before today in week
+            weekday_row += ' '
+            weekday_below_row += ' '
+            weekday_row += (("{weekday:^" + str(col_width) + "}").format (weekday = weekdays [i]))
+            weekday_below_row += (("{filler:^" + str(col_width) + "}").format (filler = ('-' * (col_width - 4))))
+        # today in week (print with brighter white)
+        weekday_row += "\u001b[37;1m"
+        weekday_row += ' '
+        weekday_below_row += "\u001b[37;1m"
+        weekday_below_row += ' '
+        weekday_row += (("{weekday:^" + str(col_width) + "}").format (weekday = weekdays [today_index]))
+        weekday_below_row += (("{filler:^" + str(col_width) + "}").format (filler = ('-' * (col_width - 4))))
+        weekday_row += "\u001b[0m\u001b[37m" # reset to normal white color
+        weekday_below_row += "\u001b[0m\u001b[37m" # reset to normal white color
+        for i in range(today_index + 1, 7): # days after today in week
             weekday_row += ' '
             weekday_below_row += ' '
             weekday_row += (("{weekday:^" + str(col_width) + "}").format (weekday = weekdays [i]))
