@@ -1,8 +1,7 @@
-# TodoCal Data Structure in Python
+# TodoCal Data Handler
 # --------------------------------
 # Catelog
 # get_DATA: returns (dictionary object)
-# parse_DATA: extract data from file and parse dictionary object
 
 import tc_meta
 
@@ -46,7 +45,7 @@ def __parse_files ():
             filter_daily,
             filter_norepeat)
 
-def parse_DATA ():
+def __parse_DATA ():
     (settings, colorcode, yearly, monthly, weekly, daily, norepeat) = __parse_files ()
 
     DATA = {"meta" : {"color-code" : {}, "color" : {}, "dimension" : {}},
@@ -120,6 +119,14 @@ def parse_DATA ():
     DATA ["events"] ["daily"] ["todo"]    = [parse_event (line) for line in daily_todo]
     DATA ["events"] ["norepeat"] ["todo"] = [parse_event (line) for line in norepeat_todo]
 
+    # parse color codes
+    for line in colorcode:
+        kv_l = [s.strip() for s in line.split (' ')]
+        DATA ["meta"] ["color-code"] [kv_l[0]] = kv_l[1]
+
+    return DATA
+
+# sample DATA
 __DATA = {
         "meta" : {
             "color-code" : {
@@ -204,5 +211,5 @@ __DATA = {
         }
 
 def get_DATA ():
-    return __DATA
+    return __parse_DATA ()
 
