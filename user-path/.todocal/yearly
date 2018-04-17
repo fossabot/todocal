@@ -1,8 +1,0 @@
-# This file should be auto-generated. Please do not edit.
-
-__default
-
-{ name : Sam's Birthday, month : 11, day : 30, whole-day : yes, hour : , length : }
-{ name : Yuhao's Birthday, month : 11, day : 28, whole-day : yes, hour : , length : }
-
-__todo
