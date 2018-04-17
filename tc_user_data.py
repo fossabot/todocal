@@ -110,12 +110,6 @@ def tcl_list_all ():
 
     # list no-repeat events
     RET.append ("{key_str:-^50}".format (key_str = "no-repeat"))
-    def make_hour_str (hour): # raw hour string from DATA object
-        hm_l = [s.strip() for s in hour.split (' ')]
-        if len(hm_l) == 1:
-            return "{h:>2}:{m:<2}".format (h = hm_l[0], m = "00")
-        else:
-            return "{h:>2}:{m:0<2}".format (h = hm_l[0], m = hm_l[1])
     for e in E_DICT ["no-repeat"] ["default"]:
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {e_time}".format (e_name = e ["name"],
                     e_month = e ["month"], e_day = ["day"], e_time = make_hour_str (e ["hour"])))
