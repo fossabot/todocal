@@ -112,14 +112,14 @@ def tcl_list_all ():
     RET.append ("{key_str:-^50}".format (key_str = "no-repeat"))
     for e in E_DICT ["no-repeat"] ["default"]:
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {e_time}".format (e_name = e ["name"],
-                    e_month = e ["month"], e_day = ["day"], e_time = make_hour_str (e ["hour"])))
+                    e_month = e ["month"], e_day = e ["day"], e_time = make_hour_str (e ["hour"])))
     for e in E_DICT ["no-repeat"] ["todo"]:
         if e ["done"] == "yes":
             mark = tc_meta.check_mark
         else:
             mark = tc_meta.cross_mark
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {e_time} {mark_s}".format (e_name = e ["name"],
-                    e_month = e ["month"], e_day = ["day"], e_time = make_hour_str (e ["hour"]), mark_s = mark))
+                    e_month = e ["month"], e_day = e ["day"], e_time = make_hour_str (e ["hour"]), mark_s = mark))
 
     counter = 0
     for i in range (len (RET)):
