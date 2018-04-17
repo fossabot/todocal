@@ -37,6 +37,8 @@ def tcl_list_min ():
     for i in range (len (RET)):
         if RET [i][0] != '-':
             counter += 1
-            RET [i] = ("[{count:0>3}] ".format (count = str (counter))) + RET [i]
+            RET [i] = ("[{count:0>2}] ".format (count = str (counter))) + RET [i]
+        else:
+            RET [i] = '\u001b[37m' + RET [i] + '\u001b[0m'
     return RET
 
