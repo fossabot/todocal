@@ -120,11 +120,6 @@ def __parse_DATA ():
     DATA ["events"] ["no-repeat"] ["todo"] = [parse_event (line) for line in norepeat_todo]
 
     # parse color codes
-    # Note: Since color code data use whitespaces as separators,
-    # to parse color codes needs first removing extra whitespaces.
-    for line in colorcode:
-        while "  " in line: # double whitespaces
-            line = line.replace ("  ", ' ') # replace double with single space
     for line in colorcode:
         kv_l = [s.strip() for s in line.split (' ')]
         DATA ["meta"] ["color-code"] [kv_l[0]] = kv_l[1]
