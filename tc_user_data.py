@@ -46,5 +46,18 @@ def tcl_list_all ():
     DATA = get_DATA () # return standard dictionary object DATA
     E_DICT = DATA ["events"] # extract event dictionary
     RET = [] # return string list
-    pass # unimplemented
+
+    # list yearly events
+    RET.append ("{key_str:-^50}".format (key_str = "yearly"))
+    for e in E_DICT ["yearly"] ["default"]:
+        RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2}".format (e_name = e ["name"], e_month = e ["month"], e_day = e ["day"]))
+    for e in E_DICT ["yearly"] ["todo"]:
+        if e ["done"] == "yes":
+            mark = tc_meta.check_mark
+        else:
+            mark = tc_meta.cross_mark
+        RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {mark_s}".format (e_name = e ["name"],
+                    e_month = e ["month"], e_day = e ["day"], mark_s = mark))
+
+    return RET
 
