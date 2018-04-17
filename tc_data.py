@@ -121,7 +121,7 @@ def __parse_DATA ():
 
     # parse color codes
     for line in colorcode:
-        kv_l = [s.strip() for s in line.split (' ')]
+        kv_l = [s.strip() for s in line.split (':')]
         DATA ["meta"] ["color-code"] [kv_l[0]] = kv_l[1]
 
     return DATA
