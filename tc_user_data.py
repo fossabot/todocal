@@ -42,3 +42,9 @@ def tcl_list_min ():
             RET [i] = '\u001b[37m' + RET [i] + '\u001b[0m'
     return RET
 
+def tcl_list_all ():
+    DATA = get_DATA () # return standard dictionary object DATA
+    E_DICT = DATA ["events"] # extract event dictionary
+    RET = [] # return string list
+    pass # unimplemented
+
