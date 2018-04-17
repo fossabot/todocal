@@ -23,7 +23,11 @@ def tcl_list_min ():
         for e in DEFAULTS:
             RET.append ("* {e_name:<30}".format (e_name = e ["name"]))
         for e in TODOS:
-            RET.append ("* {e_name:<30}".format (e_name = e ["name"]))
+            if e ["done"] == "yes":
+                mark = tc_meta.check_mark
+            else:
+                mark = tc_meta.cross_mark
+            RET.append ("* {e_name:<30} {mark_s}".format (e_name = e ["name"], mark_s = mark))
         return 0
 
     for key in ["yearly", "monthly", "weekly", "daily", "no-repeat"]:
