@@ -1,4 +1,4 @@
-# TodoCal Data Handler
+# TodoCal Data Handler (Internal)
 # --------------------------------
 # Catelog
 # get_DATA: returns (dictionary object)
