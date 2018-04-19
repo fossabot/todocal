@@ -250,21 +250,22 @@ def summarize_todos (DATA, TIME_INFO):
     no_rep_todos  = [event for event in DATA ["events"] ["no-repeat"] ["todo"]
                         if __day_in_week (TIME_INFO, int (event ["month"]), int (event ["day"]))]
 
-    yearly_color  = __get_color_code (DATA, "yearly default")
-    monthly_color = __get_color_code (DATA, "monthly default")
-    weekly_color  = __get_color_code (DATA, "weekly default")
-    daily_color   = __get_color_code (DATA, "daily default")
-    no_rep_color  = __get_color_code (DATA, "no-repeat default")
-    yearly_todo_color  = __get_color_code (DATA, "yearly todo")
-    yearly_late_color  = __get_color_code (DATA, "yearly late")
-    monthly_todo_color = __get_color_code (DATA, "monthly todo")
-    monthly_late_color = __get_color_code (DATA, "monthly late")
-    weekly_todo_color  = __get_color_code (DATA, "weekly todo")
-    weekly_late_color  = __get_color_code (DATA, "weekly late")
-    daily_todo_color   = __get_color_code (DATA, "daily todo")
-    daily_late_color   = __get_color_code (DATA, "daily late")
-    no_rep_todo_color  = __get_color_code (DATA, "no-repeat todo")
-    no_rep_late_color  = __get_color_code (DATA, "no-repeat late")
+    GCC = __get_color_code # locally simplify code
+    yearly_color  = GCC (DATA, "yearly default")
+    monthly_color = GCC (DATA, "monthly default")
+    weekly_color  = GCC (DATA, "weekly default")
+    daily_color   = GCC (DATA, "daily default")
+    no_rep_color  = GCC (DATA, "no-repeat default")
+    yearly_todo_color  = GCC (DATA, "yearly todo")
+    yearly_late_color  = GCC (DATA, "yearly late")
+    monthly_todo_color = GCC (DATA, "monthly todo")
+    monthly_late_color = GCC (DATA, "monthly late")
+    weekly_todo_color  = GCC (DATA, "weekly todo")
+    weekly_late_color  = GCC (DATA, "weekly late")
+    daily_todo_color   = GCC (DATA, "daily todo")
+    daily_late_color   = GCC (DATA, "daily late")
+    no_rep_todo_color  = GCC (DATA, "no-repeat todo")
+    no_rep_late_color  = GCC (DATA, "no-repeat late")
 
     current_datetime_object = datetime.datetime (
         TIME_INFO ["year"], TIME_INFO ["month"], TIME_INFO ["day"],
@@ -280,42 +281,27 @@ def summarize_todos (DATA, TIME_INFO):
         if e ["done"] == "yes":
             e ["color"] = yearly_color
             continue
-        if is_late (e):
-            e ["color"] = yearly_late_color
-        else:
-            e ["color"] = yearly_todo_color
+        e ["color"] = yearly_late_color if is_late (e) else yearly_todo_color
     for e in monthly_todos:
         if e ["done"] == "yes":
             e ["color"] = monthly_color
             continue
-        if is_late (e):
-            e ["color"] = monthly_late_color
-        else:
-            e ["color"] = monthly_todo_color
+        e ["color"] = monthly_late_color if is_late (e) else monthly_todo_color
     for e in weekly_todos:
         if e ["done"] == "yes":
             e ["color"] = weekly_color
             continue
-        if is_late (e):
-            e ["color"] = weekly_late_color
-        else:
-            e ["color"] = weekly_todo_color
+        e ["color"] = weekly_late_color if is_late (e) else weekly_todo_color
     for e in daily_todos:
         if e ["done"] == "yes":
             e ["color"] = daily_color
             continue
-        if is_late (e):
-            e ["color"] = daily_late_color
-        else:
-            e ["color"] = daily_todo_color
+        e ["color"] = daily_late_color if is_late (e) else daily_todo_color
     for e in no_rep_todos:
         if e ["done"] == "yes":
             e ["color"] = no_rep_color
             continue
-        if is_late (e):
-            e ["color"] = no_rep_late_color
-        else:
-            e ["color"] = no_rep_todo_color
+        e ["color"] = no_rep_late_color if is_late (e) else no_rep_todo_color
 
     summary = yearly_todos + monthly_todos + weekly_todos + daily_todos + no_rep_todos
 
