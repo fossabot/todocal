@@ -163,18 +163,21 @@ __DATA = {
         "events" : {
             "yearly" : {
                 "default" : [
+                    # yearly: name, month, day, whole-day, hour, length (todo +done)
                     {"name" : "My Birthday" , "month" : "11" , "day" : "30" , "whole-day" : "yes" , "hour" : ""   , "length" : ""},
                     ],
                 "todo" : [
                     ],
                 },
             "monthly" : {
+                # monthly: name, day, whole-day, hour, length (todo +done)
                 "default" : [
                     ],
                 "todo" : [ # current month instance
                     ],
                 },
             "weekly" : {
+                # weekly: name, day (weekday), hour, length (todo +done)
                 "default" : [
                     {"name" : "259 Lecture"           , "day" : "1" , "hour" : "9 30"  , "length" : "50"},
                     {"name" : "Interp Session"        , "day" : "1" , "hour" : "12 30" , "length" : "50"},
@@ -194,12 +197,15 @@ __DATA = {
                     ],
                 },
             "daily" : {
+                # daily: name, hour, length (todo +done *)
+                # * done -> refer to comment below
                 "default" : [
                     ],
                 "todo" : [ # weekly instances by day
                     ],
                 },
             "no-repeat" : {
+                # no-repeat: name, month, day, hour, length (todo +done)
                 "default" : [
                     ],
                 "todo" : [

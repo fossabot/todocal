@@ -18,3 +18,9 @@ def raise_WARNING (msg):
     print ('\u001b[33;1m' + msg + '\u001b[0m')
 
 base_path = osp.expanduser ('~') + "/"
+
+check_mark = '\u001b[37m\u2713\u001b[0m'
+cross_mark = '\u001b[31m\u2717\u001b[0m'
+
+color_white = '\u001b[37m'
+color_reset = '\u001b[0m'

@@ -185,7 +185,7 @@ def make_display ():
 
     def make_weekday_row ():
         today_index = TIME_INFO ["weekday"]
-        weekday_row = "\u001b[37m"
+        weekday_row = tc_meta.color_white
         weekday_below_row = ""
         weekday_row += (' ' * time_col_width)
         weekday_below_row += (' ' * time_col_width)
@@ -202,8 +202,8 @@ def make_display ():
         weekday_below_row += ' '
         weekday_row += (("{weekday:^" + str(col_width) + "}").format (weekday = weekdays [today_index]))
         weekday_below_row += (("{filler:^" + str(col_width) + "}").format (filler = ('-' * (col_width - 4))))
-        weekday_row += "\u001b[0m\u001b[37m" # reset to normal white color
-        weekday_below_row += "\u001b[0m\u001b[37m" # reset to normal white color
+        weekday_row += (tc_meta.color_reset + tc_meta.color_white) # reset to normal white color
+        weekday_below_row += (tc_meta.color_reset + tc_meta.color_white) # reset to normal white color
         for i in range(today_index + 1, 7): # days after today in week
             weekday_row += ' '
             weekday_below_row += ' '
@@ -213,7 +213,7 @@ def make_display ():
     (weekday_row, weekday_below_row) = make_weekday_row ()
 
     DISPLAY.append (weekday_row)
-    DISPLAY.append (weekday_below_row + "\u001b[0m")
+    DISPLAY.append (weekday_below_row + tc_meta.color_reset)
     # Above: first three rows of calendar display
 
     # first event re-synthesis
@@ -282,7 +282,7 @@ def make_display ():
                 for line in e_display:
                     COL.append ('\u001b[38;5;' + e ["color-code"] + 'm' +
                                 ('{line_str:<' + str(col_width) + '}').format (line_str = line) +
-                                '\u001b[0m')
+                                tc_meta.color_reset)
                     count_use_span += 1
             for _ in range(span_height - count_use_span): # fill un-used height
                 COL.append (' ' * col_width)
@@ -294,13 +294,14 @@ def make_display ():
     for i in range(7):
         COLs [i] = make_main_display (col_width, span_height, SYNs_DICT [i], T)
 
-    ROWs = [('\u001b[37m|\u001b[0m' + COLs[0][i] +
-            '\u001b[37m|\u001b[0m' + COLs[1][i] +
-            '\u001b[37m|\u001b[0m' + COLs[2][i] +
-            '\u001b[37m|\u001b[0m' + COLs[3][i] +
-            '\u001b[37m|\u001b[0m' + COLs[4][i] +
-            '\u001b[37m|\u001b[0m' + COLs[5][i] +
-            '\u001b[37m|\u001b[0m' + COLs[6][i]) for i in range (len (COLs[0]))]
+    vertical_seps = (tc_meta.color_white + '|' + tc_meta.color_reset)
+    ROWs = [(vertical_seps + COLs[0][i] +
+            vertical_seps + COLs[1][i] +
+            vertical_seps + COLs[2][i] +
+            vertical_seps + COLs[3][i] +
+            vertical_seps + COLs[4][i] +
+            vertical_seps + COLs[5][i] +
+            vertical_seps + COLs[6][i]) for i in range (len (COLs[0]))]
     for i in range(len(ROWs)):
         if i % span_height == 0:
             hour_index = i // span_height
@@ -310,9 +311,9 @@ def make_display ():
 
     for r in ROWs:
         if '^' in r:
-            r = r.replace ('^', '\u001b[37m\u2713\u001b[0m')
+            r = r.replace ('^', tc_meta.check_mark)
         if '%' in r:
-            r = r.replace ('%', '\u001b[31m\u2717\u001b[0m')
+            r = r.replace ('%', tc_meta.cross_mark)
         DISPLAY.append (r)
     DISPLAY.append ('\u001b[37m' + ('{filler:^' + str(calendar_width) + '}').format (filler = '-' * (calendar_width - 3)) +
                     '\u001b[0m')
