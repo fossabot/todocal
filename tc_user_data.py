@@ -23,10 +23,7 @@ def tcl_list_min ():
         for e in DEFAULTS:
             RET.append ("* {e_name:<30}".format (e_name = e ["name"]))
         for e in TODOS:
-            if e ["done"] == "yes":
-                mark = tc_meta.check_mark
-            else:
-                mark = tc_meta.cross_mark
+            mark = tc_meta.check_mark if e ["done"] == "yes" else tc_meta.cross_mark
             RET.append ("* {e_name:<30} {mark_s}".format (e_name = e ["name"], mark_s = mark))
         return 0
 
@@ -52,10 +49,7 @@ def tcl_list_all ():
     for e in E_DICT ["yearly"] ["default"]:
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2}".format (e_name = e ["name"], e_month = e ["month"], e_day = e ["day"]))
     for e in E_DICT ["yearly"] ["todo"]:
-        if e ["done"] == "yes":
-            mark = tc_meta.check_mark
-        else:
-            mark = tc_meta.cross_mark
+        mark = tc_meta.check_mark if e ["done"] == "yes" else tc_meta.cross_mark
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {mark_s}".format (e_name = e ["name"],
                     e_month = e ["month"], e_day = e ["day"], mark_s = mark))
 
@@ -64,10 +58,7 @@ def tcl_list_all ():
     for e in E_DICT ["monthly"] ["default"]:
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2}".format (e_name = e ["name"], e_month = '--', e_day = e ["day"]))
     for e in E_DICT ["monthly"] ["todo"]:
-        if e ["done"] == "yes":
-            mark = tc_meta.check_mark
-        else:
-            mark = tc_meta.cross_mark
+        mark = tc_meta.check_mark if e ["done"] == "yes" else tc_meta.cross_mark
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {mark_s}".format (e_name = e ["name"],
                     e_month = '--', e_day = e ["day"], mark_s = mark))
 
@@ -83,10 +74,7 @@ def tcl_list_all ():
     for e in E_DICT ["weekly"] ["default"]:
         RET.append ("* {e_name:<30} {e_weekday:<4}".format (e_name = e ["name"], e_weekday = WD [int (e ["day"])]))
     for e in E_DICT ["weekly"] ["todo"]:
-        if e ["done"] == "yes":
-            mark = tc_meta.check_mark
-        else:
-            mark = tc_meta.cross_mark
+        mark = tc_meta.check_mark if e ["done"] == "yes" else tc_meta.cross_mark
         RET.append ("* {e_name:<30} {e_weekday:<4} {mark_s}".format (e_name = e ["name"],
                     e_weekday = WD [int (e ["day"])], mark_s = mark))
 
@@ -101,10 +89,7 @@ def tcl_list_all ():
     for e in E_DICT ["daily"] ["default"]:
         RET.append ("* {e_name:<30} {e_time}".format (e_name = e ["name"], e_time = make_hour_str (e ["hour"])))
     for e in E_DICT ["daily"] ["todo"]:
-        if e ["done"] == "yes":
-            mark = tc_meta.check_mark
-        else:
-            mark = tc_meta.cross_mark
+        mark = tc_meta.check_mark if e ["done"] == "yes" else tc_meta.cross_mark
         RET.append ("* {e_name:<30} {e_time} {mark_s}".format (e_name = e ["name"],
                     e_time = make_hour_str (e ["hour"]), mark_s = mark))
 
@@ -114,10 +99,7 @@ def tcl_list_all ():
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {e_time}".format (e_name = e ["name"],
                     e_month = e ["month"], e_day = e ["day"], e_time = make_hour_str (e ["hour"])))
     for e in E_DICT ["no-repeat"] ["todo"]:
-        if e ["done"] == "yes":
-            mark = tc_meta.check_mark
-        else:
-            mark = tc_meta.cross_mark
+        mark = tc_meta.check_mark if e ["done"] == "yes" else tc_meta.cross_mark
         RET.append ("* {e_name:<30} {e_month:>2}/{e_day:<2} {e_time} {mark_s}".format (e_name = e ["name"],
                     e_month = e ["month"], e_day = e ["day"], e_time = make_hour_str (e ["hour"]), mark_s = mark))
 
