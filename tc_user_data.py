@@ -39,7 +39,7 @@ def tcl_list_min ():
             counter += 1
             RET [i] = ("[{count:0>2}] ".format (count = str (counter))) + RET [i]
         else:
-            RET [i] = '\u001b[37m' + RET [i] + '\u001b[0m'
+            RET [i] = tc_meta.color_white + RET [i] + tc_meta.color_reset
     return RET
 
 def tcl_list_all ():
@@ -127,6 +127,6 @@ def tcl_list_all ():
             counter += 1
             RET [i] = ("[{count:0>2}] ".format (count = str (counter))) + RET [i]
         else:
-            RET [i] = '\u001b[37m' + RET [i] + '\u001b[0m'
+            RET [i] = tc_meta.color_white + RET [i] + tc_meta.color_reset
     return RET
 
