@@ -1,9 +1,9 @@
 # TodoCal Data Handler (External)
 # -------------------------------
 # Catelog
-# - tcl_list_min
-# - tcl_list_all
-# - tcl_add
+# - tcl_list_min (pure)
+# - tcl_list_all (pure)
+# - tcl_add (direct side effect)
 # - tcl_del
 # - tcl_update
 
@@ -111,4 +111,7 @@ def tcl_list_all ():
         else:
             RET [i] = tc_meta.color_white + RET [i] + tc_meta.color_reset
     return RET
+
+def tcl_add ():
+    pass
 
